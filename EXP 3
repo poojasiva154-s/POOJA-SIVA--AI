@@ -1,0 +1,45 @@
+from collections import deque
+
+capacity = (4, 3)
+start = (0, 0)
+goal = (2, 0)
+
+queue = deque([(start, [])])
+visited = {start}
+
+while queue:
+    state, path = queue.popleft()
+    a, b = state
+
+    if state == goal:
+        print("Solution:")
+        for s in path + [state]:
+            print(s)
+        break
+
+    states = []
+
+    
+    states.append((4, b))
+
+   
+    states.append((a, 3))
+
+   
+    states.append((0, b))
+
+    
+    states.append((a, 0))
+
+    
+    amount = min(a, 3 - b)
+    states.append((a - amount, b + amount))
+
+   
+    amount = min(b, 4 - a)
+    states.append((a + amount, b - amount))
+
+    for new_state in states:
+        if new_state not in visited:
+            visited.add(new_state)
+            queue.append((new_state, path + [state]))
