@@ -1,0 +1,47 @@
+from collections import deque
+
+start = (3, 3, 0)
+goal = (0, 0, 1)
+
+# (Missionaries, Cannibals, Boat side)
+queue = deque([(start, [])])
+visited = {start}
+
+moves = [(1,0), (2,0), (0,1), (0,2), (1,1)]
+
+def safe(m, c):
+    if m < 0 or c < 0 or m > 3 or c > 3:
+        return False
+
+    # Left side
+    if m > 0 and m < c:
+        return False
+
+    # Right side
+    rm = 3 - m
+    rc = 3 - c
+
+    if rm > 0 and rm < rc:
+        return False
+
+    return True
+
+while queue:
+    state, path = queue.popleft()
+    m, c, boat = state
+
+    if state == goal:
+        print("Solution:")
+        for s in path + [state]:
+            print(s)
+        break
+
+    for dm, dc in moves:
+        if boat == 0:
+            new_state = (m - dm, c - dc, 1)
+        else:
+            new_state = (m + dm, c + dc, 0)
+
+        if safe(new_state[0], new_state[1]) and new_state not in visited:
+            visited.add(new_state)
+            queue.append((new_state, path + [state]))
