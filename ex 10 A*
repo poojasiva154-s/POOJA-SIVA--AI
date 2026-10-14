@@ -1,0 +1,13 @@
+import heapq
+graph = {'A': [('B', 1), ('C', 4)],
+         'B': [('D', 2)], 'C': [('D', 1)],
+         'D': []}
+h = {'A': 3, 'B': 2, 'C': 1, 'D': 0}
+q = [(h['A'], 0, 'A')]
+while q:
+    f, g, n = heapq.heappop(q)
+    print(n, end=" ")
+    if n == 'D':
+        break
+    for v, w in graph[n]:
+        heapq.heappush(q, (g + w + h[v], g + w, v))
