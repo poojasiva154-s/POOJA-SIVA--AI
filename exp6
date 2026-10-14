@@ -1,0 +1,33 @@
+
+# Vacuum Cleaner Problem in Artificial Intelligence
+
+# Initial state of rooms
+rooms = {
+    'A': 'Dirty',
+    'B': 'Dirty'
+}
+
+# Initial vacuum cleaner position
+position = 'A'
+
+print("Initial State:", rooms)
+print("Vacuum Cleaner starts in Room", position)
+
+# Vacuum cleaner actions
+while 'Dirty' in rooms.values():
+
+    if rooms[position] == 'Dirty':
+        print("Room", position, "is Dirty. Cleaning...")
+        rooms[position] = 'Clean'
+        print("Room", position, "is now Clean.")
+
+    elif position == 'A':
+        position = 'B'
+        print("Moving to Room B")
+
+    else:
+        position = 'A'
+        print("Moving to Room A")
+
+print("\nFinal State:", rooms)
+print("All rooms are Clean!")
