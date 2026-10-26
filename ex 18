@@ -1,0 +1,9 @@
+% Database with Name and Date of Birth
+person('Ravi', '2002-05-10').
+person('Priya', '2003-08-15').
+person('Arun', '2001-12-20').
+person('Meena', '2004-03-25').
+
+% Query the database
+show_dob(Name, DOB) :-
+    person(Name, DOB).
