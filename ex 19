@@ -1,0 +1,23 @@
+% Student Database
+student(101, 'Arun').
+student(102, 'Priya').
+student(103, 'Ravi').
+
+% Teacher Database
+teacher(t1, 'Kumar').
+teacher(t2, 'Meena').
+
+% Subject Code Database
+subject(s101, 'Artificial Intelligence').
+subject(s102, 'Python').
+
+% Student-Teacher-Subject Relationship
+teaches(t1, s101).
+teaches(t2, s102).
+
+% Query student, teacher and subject
+student_teacher_subject(Student, Teacher, Subject) :-
+    student(_, Student),
+    teacher(TCode, Teacher),
+    subject(SCode, Subject),
+    teaches(TCode, SCode).
